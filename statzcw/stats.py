@@ -8,8 +8,7 @@ def zcount(list: List[float]) -> float:
 
 
 def zmean(list: List[float]) -> float:
-    total = sum(list)
-    mean = total / zcount(list)
+    mean = (sum(list)) / zcount(list)
     return mean
 
 
@@ -74,7 +73,7 @@ def zcorr(listx: List[float], listy: List[float]) -> float:
     return correlation
 
 
-def read_data_sets(file_path):
+def read_data_sets_x(file_path):
     header = []
     try:
         listx = []
@@ -87,22 +86,62 @@ def read_data_sets(file_path):
             listy = []
             for row in reader:
                 listx.append(row[0])
-                listy.append(row[1])
-            list_xy.append(listx)
-            list_xy.append(listy)
-        return list_xy
     except TypeError:
         print('')
+    return [float(x) for x in listx]
 
 
+def read_data_sets_y(file_path):
+    header = []
+    try:
+        listy = []
+        list_xy = []
+        with open(file_path, 'r') as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            listy = []
+            for row in reader:
+                listy.append(row[1])
+    except TypeError:
+        print('')
+    return [float(x) for x in listy]
+
+
+# .csv file paths
 data0 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataZero.csv'
 data1 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataOne.csv'
 data2 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataTwo.csv'
 data3 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataThree.csv'
-dataset0 = read_data_sets(data0)
-dataset1 = read_data_sets(data1)
-dataset2 = read_data_sets(data2)
-dataset3 = read_data_sets(data3)
+
+dataset0_x = read_data_sets_x(data0)
+dataset1_x = read_data_sets_x(data1)
+dataset2_x = read_data_sets_x(data2)
+dataset3_x = read_data_sets_x(data3)
+
+dataset0_y = read_data_sets_y(data0)
+dataset1_y = read_data_sets_y(data1)
+dataset2_y = read_data_sets_y(data2)
+dataset3_y = read_data_sets_y(data3)
 
 # Dataset 0 stats
-print(f'Data set 0: \nCount of x is {zcount(dataset0[0])}')
+print(
+    f'Data set 0: \nCount of x: {zcount(dataset0_x)} \nCount of y: {zcount(dataset0_y)} \nMean of x: {zmean(dataset0_x)}\n\
+Variance of x: {zvariance(dataset0_x)}\nMean of y: {zmean(dataset0_y)}\nVariance of y: {zvariance(dataset0_y)}\n\
+Correlation of x, y: {zcorr(dataset0_x, dataset0_y)}\nMedian of x: {zmedian(dataset0_x)}\nMedian of Y: {zmedian(dataset0_y)}\n\
+Mode of x: {zmode(dataset0_x)}\nMode of y: {zmode(dataset0_y)}\nStd deviation of x: {zstddev(dataset0_x)}\n\
+Std deviation of y: {zstddev(dataset0_y)}\nStd Error of x: {zstderr(dataset0_x)}\nStd Error of y: {zstderr(dataset0_y)}')
+
+# Dataset 1 stats
+print(
+    f'\nData set 1: \nCount of x: {zcount(dataset1_x)} \nCount of y: {zcount(dataset1_y)} \nMean of x: {zmean(dataset1_x)}\n\
+Variance of x: {zvariance(dataset1_x)}\nMean of y: {zmean(dataset1_y)}\nVariance of y: {zvariance(dataset1_y)}\n\
+Correlation of x, y: {zcorr(dataset1_x, dataset1_y)}\nMedian of x: {zmedian(dataset1_x)}\nMedian of Y: {zmedian(dataset1_y)}\n\
+Mode of x: {zmode(dataset1_x)}\nMode of y: {zmode(dataset1_y)}\nStd deviation of x: {zstddev(dataset1_x)}\n\
+Std deviation of y: {zstddev(dataset1_y)}\nStd Error of x: {zstderr(dataset1_x)}\nStd Error of y: {zstderr(dataset1_y)}')
+
+# Dataset 2 stats
+print(f'\nData set 1: \nCount of x: {zcount(dataset1_x)} \nCount of y: {zcount(dataset1_y)} \nMean of x: {zmean(dataset1_x)}\n\
+Variance of x: {zvariance(dataset1_x)}\nMean of y: {zmean(dataset1_y)}\nVariance of y: {zvariance(dataset1_y)}\n\
+Correlation of x, y: {zcorr(dataset1_x, dataset1_y)}\nMedian of x: {zmedian(dataset1_x)}\nMedian of Y: {zmedian(dataset1_y)}\n\
+Mode of x: {zmode(dataset1_x)}\nMode of y: {zmode(dataset1_y)}\nStd deviation of x: {zstddev(dataset1_x)}\n\
+Std deviation of y: {zstddev(dataset1_y)}\nStd Error of x: {zstderr(dataset1_x)}\nStd Error of y: {zstderr(dataset1_y)}')

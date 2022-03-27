@@ -2,7 +2,7 @@ from statistics import mean, variance, pvariance
 import statistics 
 from statzcw.stats import *
 from sys import argv
-from statzcw.stats import read_data_sets
+from statzcw.stats import read_data_sets_x, read_data_sets_y
 
 data0 = [1.0, 2.0, 3.0, 4.0, 5.0]
 data2 = [1.0, 2.0, 2.0, 4.0, 5.0]
@@ -72,7 +72,8 @@ sample10 = [-14.82381293, -0.29423447, -13.56067979, -1.6288903, -0.31632439,
 if __name__ == "__main__":
     #print("var of data0", zvariance(data0))
     #print("corr of data0", zcorr(data0,data2))
-    z = read_data_sets(argv[1:])
+    z = read_data_sets_x(argv[1:])
+    y = read_data_sets_y(argv[1:])
     # print("z", z)
     print("statzcw")
     for k, v in z.items():
