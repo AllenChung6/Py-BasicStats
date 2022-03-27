@@ -1,5 +1,6 @@
 from typing import List
 from math import floor, ceil, sqrt
+import csv
 
 
 def zcount(list: List[float]) -> float:
@@ -57,11 +58,51 @@ def zstderr(list: List[float]) -> float:
     standard_error = zstddev(list) / sqrt(zcount(list))
     return standard_error
 
+
+def zcovar(listx: List[float], listy: List[float]) -> float:
+    sum = 0
+    if zcount(listx) == zcount(listy):
+        for i in range(0, zcount(listx)):
+            sum += ((listx[i] - zmean(listx)) * (listy[i] - zmean(listy)))
+        covariance = sum / (zcount(listx) - 1)
+        return covariance
+
+
+# correlation(l1, l2) = covariance(l1, l2) / (stddev(l1) * stddev(l2))
 def zcorr(listx: List[float], listy: List[float]) -> float:
+    correlation = zcovar(listx, listy) / (zstddev(listx) * zstddev(listy))
+    return correlation
 
 
+def read_data_sets(file_path):
+    header = []
+    try:
+        listx = []
+        listy = []
+        list_xy = []
+        with open(file_path, 'r') as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            listx = []
+            listy = []
+            for row in reader:
+                listx.append(row[0])
+                listy.append(row[1])
+            list_xy.append(listx)
+            list_xy.append(listy)
+        return list_xy
+    except TypeError:
+        print('')
 
 
+data0 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataZero.csv'
+data1 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataOne.csv'
+data2 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataTwo.csv'
+data3 = '/Users/allenc/PyCharmProjects/Py-BasicStats/dataThree.csv'
+dataset0 = read_data_sets(data0)
+dataset1 = read_data_sets(data1)
+dataset2 = read_data_sets(data2)
+dataset3 = read_data_sets(data3)
 
-list = [7, 10, 14, 12, 14]
-print(zstderr(list))
+# Dataset 0 stats
+print(f'Data set 0: \nCount of x is {zcount(dataset0[0])}')
