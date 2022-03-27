@@ -1,5 +1,5 @@
 from typing import List
-from math import floor, ceil
+from math import floor, ceil, sqrt
 
 
 def zcount(list: List[float]) -> float:
@@ -16,6 +16,7 @@ def zmode(list: List[float]) -> float:
     return max(set(list), key=list.count)
 
 
+# Take the middle number. If it is an even list, sort the list and take the mean of the middle two numbers.
 def zmedian(list: List[float]) -> float:
     if zcount(list) % 2 == 0:
         # Takes the middle index
@@ -33,5 +34,26 @@ def zmedian(list: List[float]) -> float:
         return list[median]
 
 
-list = [267, 19, 43, 2000, ]
-print(zmedian(list))
+# Take the mean. Take each value, subtract the mean, square the difference. Add all squared differences and divide by number of values.
+def zvariance(list: List[float]) -> float:
+    # Calculate First Part
+    mean = zmean(list)
+    # Calculate Second Part
+    new_list = [(x - mean) ** 2 for x in list if True]
+    # Calculate Thid Part
+    variance = zmean(new_list)
+    return variance
+
+
+# Square Root the variance
+def zstddev(list: List[float]) -> float:
+    variance = zvariance(list)
+    standard_deviation = sqrt(variance)
+    return standard_deviation
+
+
+def zstderr(list: List[float]) -> float:
+
+
+list = [7, 10, 14, 12, 14]
+print(zstddev(list))
