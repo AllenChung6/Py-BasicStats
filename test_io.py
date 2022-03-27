@@ -4,4 +4,5 @@ from sys import argv
 if __name__ == "__main__":
     z = read_data_sets_x(argv[1:])
     y = read_data_sets_y(argv[1:])
+    print(z)
     print(y)

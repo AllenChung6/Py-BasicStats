@@ -78,7 +78,6 @@ def read_data_sets_x(file_path):
     try:
         listx = []
         listy = []
-        list_xy = []
         with open(file_path, 'r') as file:
             reader = csv.reader(file)
             header = next(reader)
@@ -95,7 +94,6 @@ def read_data_sets_y(file_path):
     header = []
     try:
         listy = []
-        list_xy = []
         with open(file_path, 'r') as file:
             reader = csv.reader(file)
             header = next(reader)
@@ -140,8 +138,17 @@ Mode of x: {zmode(dataset1_x)}\nMode of y: {zmode(dataset1_y)}\nStd deviation of
 Std deviation of y: {zstddev(dataset1_y)}\nStd Error of x: {zstderr(dataset1_x)}\nStd Error of y: {zstderr(dataset1_y)}')
 
 # Dataset 2 stats
-print(f'\nData set 1: \nCount of x: {zcount(dataset1_x)} \nCount of y: {zcount(dataset1_y)} \nMean of x: {zmean(dataset1_x)}\n\
-Variance of x: {zvariance(dataset1_x)}\nMean of y: {zmean(dataset1_y)}\nVariance of y: {zvariance(dataset1_y)}\n\
-Correlation of x, y: {zcorr(dataset1_x, dataset1_y)}\nMedian of x: {zmedian(dataset1_x)}\nMedian of Y: {zmedian(dataset1_y)}\n\
-Mode of x: {zmode(dataset1_x)}\nMode of y: {zmode(dataset1_y)}\nStd deviation of x: {zstddev(dataset1_x)}\n\
-Std deviation of y: {zstddev(dataset1_y)}\nStd Error of x: {zstderr(dataset1_x)}\nStd Error of y: {zstderr(dataset1_y)}')
+print(
+    f'\nData set 2: \nCount of x: {zcount(dataset2_x)} \nCount of y: {zcount(dataset2_y)} \nMean of x: {zmean(dataset2_x)}\n\
+Variance of x: {zvariance(dataset2_x)}\nMean of y: {zmean(dataset2_y)}\nVariance of y: {zvariance(dataset2_y)}\n\
+Correlation of x, y: {zcorr(dataset2_x, dataset2_y)}\nMedian of x: {zmedian(dataset2_x)}\nMedian of Y: {zmedian(dataset2_y)}\n\
+Mode of x: {zmode(dataset2_x)}\nMode of y: {zmode(dataset2_y)}\nStd deviation of x: {zstddev(dataset2_x)}\n\
+Std deviation of y: {zstddev(dataset2_y)}\nStd Error of x: {zstderr(dataset2_x)}\nStd Error of y: {zstderr(dataset2_y)}')
+
+# Dataset 3 stats
+print(
+    f'\nData set 3: \nCount of x: {zcount(dataset3_x)} \nCount of y: {zcount(dataset3_y)} \nMean of x: {zmean(dataset3_x)}\n\
+Variance of x: {zvariance(dataset3_x)}\nMean of y: {zmean(dataset3_y)}\nVariance of y: {zvariance(dataset3_y)}\n\
+Correlation of x, y: {zcorr(dataset3_x, dataset2_y)}\nMedian of x: {zmedian(dataset3_x)}\nMedian of Y: {zmedian(dataset3_y)}\n\
+Mode of x: {zmode(dataset3_x)}\nMode of y: {zmode(dataset3_y)}\nStd deviation of x: {zstddev(dataset3_x)}\n\
+Std deviation of y: {zstddev(dataset3_y)}\nStd Error of x: {zstderr(dataset3_x)}\nStd Error of y: {zstderr(dataset3_y)}')
