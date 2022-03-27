@@ -52,8 +52,16 @@ def zstddev(list: List[float]) -> float:
     return standard_deviation
 
 
+# Standard deviation divided by the square root of the number of values.
 def zstderr(list: List[float]) -> float:
+    standard_error = zstddev(list) / sqrt(zcount(list))
+    return standard_error
+
+def zcorr(listx: List[float], listy: List[float]) -> float:
+
+
+
 
 
 list = [7, 10, 14, 12, 14]
-print(zstddev(list))
+print(zstderr(list))
