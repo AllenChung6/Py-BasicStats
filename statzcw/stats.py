@@ -78,11 +78,14 @@ def read_data_sets_x(file_path):
     try:
         listx = []
         listy = []
+        # Open and read file
         with open(file_path, 'r') as file:
             reader = csv.reader(file)
+            # Reader skips header
             header = next(reader)
             listx = []
             listy = []
+            # Goes through csv file and adds each row to the list
             for row in reader:
                 listx.append(row[0])
     except TypeError:
